@@ -5,19 +5,21 @@ const { body, validationResult, matchedData } = require('express-validator')
 
 const validate = [
     body('f_name').trim()
-        .isEmpty().withMessage('Please enter your first name'),
+        .notEmpty().withMessage('Please enter your first name'),
     body('l_name').trim()
-        .isEmpty().withMessage('Please enter your last name'),
+        .notEmpty().withMessage('Please enter your last name'),
     body('username').trim()
-        .isEmpty().withMessage('Please enter a username'), 
+        .notEmpty().withMessage('Please enter a username'), 
     body('password').trim()
+        .notEmpty().withMessage('Please enter a password')
         .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
-    body('confirm_password').custom((value, { req }) => {
-        return value === req.body.password
-    }).withMessage('Password and Confirm password must be the same'),
+    body('confirm_password').trim()
+        .notEmpty().withMessage('Please confirm your password')
+        .custom((value, { req }) => {
+            return value === req.body.password
+        }).withMessage('Password and Confirm password must be the same'),
     body('username').custom((async value => {
         const user = await db.checkUsername(value)
-        console.log(user.length > 0)
         if(user.length > 0) {
             throw new Error('Username already registered!')
         }
