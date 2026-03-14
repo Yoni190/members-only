@@ -8,6 +8,8 @@ const validate = [
         .isEmpty().withMessage('Please enter your first name'),
     body('l_name').trim()
         .isEmpty().withMessage('Please enter your last name'),
+    body('username').trim()
+        .isEmpty().withMessage('Please enter a username'), 
     body('password').trim()
         .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
     body('confirm_password').custom((value, { req }) => {
