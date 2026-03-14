@@ -1,5 +1,6 @@
 const express = require('express')
 const authRoute = require('./routes/authRoute')
+const userRoute = require('./routes/userRoute')
 const path = require('node:path')
 require('dotenv').config()
 
@@ -7,6 +8,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(authRoute)
+app.use(userRoute)
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
