@@ -13,6 +13,6 @@ async function register(f_name, l_name, username, password) {
 }
 
 
-module.exports = [
+module.exports = {
     register
-]
+}
