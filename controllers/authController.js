@@ -6,7 +6,9 @@ const { body, validationResult, matchedData } = require('express-validator')
 const validate = [
     body('password').trim()
         .isLength({ min: 8 }).withMessage('Password must be at least 8 characters long.'),
-    
+    body('confirm_password').custom((value, { req }) => {
+        return value === req.body.password
+    }).withMessage('Password and Confirm password must be the same')
 ]
 
 exports.register = [
