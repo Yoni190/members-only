@@ -20,7 +20,7 @@
                 <p>Only members can view the authors and the creation date</p>
             <% } %>
 
-            <% if(post.admin) { %>
+            <% if(isAdmin) { %>
                 <form action="/delete-post/:<%= post.id %>" method="POST">
                     <button type="submit">Delete Post</button>
                 </form>
