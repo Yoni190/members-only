@@ -13,7 +13,8 @@ async function home(req, res) {
     const posts = await db.getPosts()
 
     res.render('home', {
-        posts
+        posts,
+        isMember: req.user.membership
     })
 }
 
