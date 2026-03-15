@@ -31,7 +31,7 @@ async function activate(id) {
 
 async function getPosts() {
     try {
-        const { rows } = await pool.query('SELECT posts.id, title, message, timestamp, f_name, l_name, admin FROM posts INNER JOIN users ON posts.user_id = users.id')
+        const { rows } = await pool.query('SELECT posts.id, title, message, timestamp, f_name, l_name FROM posts INNER JOIN users ON posts.user_id = users.id')
         return rows
     } catch (error) {
         console.error(error)
