@@ -1,16 +1,18 @@
-<form action="/login" method="POST">
+<div class="w-100 d-flex justify-content-center align-items-center">
+    <form action="/login" method="POST" class="d-flex flex-column p-5 gap-3 border border-black rounded shadow">
+        <h2 class="text-center">Log In</h2>
+        <div class="d-flex flex-column">
+            <label for="username">Username <p class="text-danger d-inline">*</p></label>
+            <input type="text" name="username" id="username" required>
+            <label for="password">Password <p class="text-danger d-inline">*</p></label>
+            <input type="password" name="password" id="password" required>
+        </div>
     
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" required>
-
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-
-
-
-    <button type="submit">Log In</button>
-</form>
-
-<p>Don't have an account? <a href="/register">Register Here</a></p>
+    
+    
+        <button type="submit" class="border border-black rounded bg-primary text-white p-2">Log In</button>
+        <p>Don't have an account? <a href="/register" class="text-decoration-none">Register Here</a></p>
+    </form>
+</div>
 
 <%- include('partials/errors.ejs') %>
