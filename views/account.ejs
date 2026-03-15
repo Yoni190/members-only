@@ -6,6 +6,27 @@
     <title>Account</title>
 </head>
 <body>
+    <h1>Account</h1>
     
+    <div>
+        <label for="f_name">First Name</label>
+        <p><%= user.f_name %></p>
+    </div>
+    
+    <div>
+        <label for="l_name">Last Name</label>
+        <p><%= user.l_name %></p>
+    </div>
+
+    <div>
+        <label for="memebership">Membership Status</label>
+        <% if(user.membership) { %>
+            <p>Active</p>
+        <% } else {%>
+            <p>Not Active</p>
+        <% } %>
+
+    </div>
+
 </body>
 </html>
