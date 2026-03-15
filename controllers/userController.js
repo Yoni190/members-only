@@ -9,8 +9,12 @@ function loginView(req, res) {
     res.render('login')
 }
 
-function home(req, res) {
-    res.render('home')
+async function home(req, res) {
+    const posts = await db.getPosts()
+
+    res.render('home', {
+        posts
+    })
 }
 
 function account(req, res) {

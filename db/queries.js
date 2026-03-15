@@ -29,8 +29,18 @@ async function activate(id) {
     }
 }
 
+async function getPosts() {
+    try {
+        const { rows } = await pool.query('SELECT * FROM posts')
+        return rows
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     register,
     checkUsername,
-    activate
+    activate,
+    getPosts
 }
