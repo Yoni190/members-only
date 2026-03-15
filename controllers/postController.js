@@ -31,7 +31,7 @@ exports.create = [
         const user_id = req.session.passport.user
 
         await db.createPost(title, message, user_id)
-        res.redirect('/home')
+        res.redirect('/')
     }
 ]
 
