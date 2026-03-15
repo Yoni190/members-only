@@ -32,7 +32,7 @@ app.set('view engine', 'ejs')
 
 app.post('/login', 
     passport.authenticate('local', {
-        successRedirect: '/register',
+        successRedirect: '/home',
         failureRedirect: '/login'
     })
 )
