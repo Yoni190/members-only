@@ -57,10 +57,22 @@ exports.register = [
 ]
 
 exports.login = [
+    validateLogin,
+    (req, res, next) => {
+        const errors = validationResult(req)
+        if(!errors.isEmpty()) {
+            return res.status(400).render('login', {
+                errors: errors.array()
+            })
+        }
+
+        next()
+        
+    },
     passport.authenticate('local', {
-        successRedirect: '/',
-        failureRedirect: '/login'
-    })
+            successRedirect: '/',
+            failureRedirect: '/login'
+        })
 ]
 
 exports.logout = [
