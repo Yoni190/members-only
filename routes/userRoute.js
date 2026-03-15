@@ -5,5 +5,6 @@ const router = Router()
 
 router.get('/register', userController.registerView)
 router.get('/login', userController.loginView)
+router.get('/home', userController.home)
 
 module.exports = router

@@ -6,7 +6,12 @@ function loginView(req, res) {
     res.render('login')
 }
 
+function home(req, res) {
+    res.render('home')
+}
+
 module.exports = {
     registerView,
-    loginView
+    loginView,
+    home
 }
