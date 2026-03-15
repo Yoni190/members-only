@@ -4,7 +4,7 @@ const { isAuth } = require('../middlewares/authMiddleware')
 
 const router = Router()
 
-router.get('/register', userController.registerView)
+router.get(['/', '/register'], userController.registerView)
 router.get('/login', userController.loginView)
 
 router.get('/home', isAuth, userController.home)
