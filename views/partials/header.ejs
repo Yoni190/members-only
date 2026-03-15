@@ -5,8 +5,15 @@
         <div class="d-flex align-items-center">
             <ul class="list-unstyled d-flex gap-5 m-0 align-items-center">
                 <li><a href="/" class="text-black text-decoration-none">Posts</a></li>
-                <li><a href="/login" class="text-black text-decoration-none">Login</a></li>
-                <li><a href="/register" class="text-black text-decoration-none">Sign Up</a></li>
+                <% if(!user) { %>
+                    <li><a href="/login" class="text-black text-decoration-none">Login</a></li>
+                    <li><a href="/register" class="text-black text-decoration-none">Sign Up</a></li>
+                <% } else { %>
+                    <li><a href="/account" class="text-black text-decoration-none">Account</a></li>
+                    <li><a href="/create-post" class="text-black text-decoration-none">Create Post</a></li>
+                    <li><a href="/log-out" class="text-black text-decoration-none">Log Out</a></li>
+                <% } %>
+                
             </ul>
         </div>
         
