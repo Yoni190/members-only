@@ -9,7 +9,8 @@ router.get('/login', userController.loginView)
 
 router.get('/home', isAuth, userController.home)
 router.get('/account', isAuth, userController.account)
-router.get('/activate-membership', isAuth, userController.activate)
+router.get('/activate-membership', isAuth, userController.activateView)
+router.post('/activate-membership', isAuth, userController.activate)
 
 
 

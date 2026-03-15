@@ -1,3 +1,6 @@
+const db = require('../db/queries')
+require('dotenv').config()
+
 function registerView(req, res) {
     res.render('sign-up')
 }
@@ -16,10 +19,22 @@ function account(req, res) {
     })
 }
 
-function activate(req, res) {
+function activateView(req, res) {
     res.render('membership', {
         id: req.session.passport.user
     })
+}
+
+async function activate(req, res) {
+    const { code, id } = req.body
+
+    if(code !== process.env.MEMBERSHIP_CODE) {
+        return res.redirect('/activate-membership')
+    }
+
+    await db.activate(id)
+
+    res.redirect('/account')
 }
 
 module.exports = {
@@ -27,5 +42,6 @@ module.exports = {
     loginView,
     home,
     account,
+    activateView,
     activate
 }
