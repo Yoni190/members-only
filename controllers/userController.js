@@ -32,8 +32,11 @@ exports.home = [
 
 exports.account = [
     (req, res) => {
+        const isAdmin = req.user.admin
+
         res.render('account', {
-            user: req.user
+            user: req.user,
+            isAdmin
         })
     }
 ]
