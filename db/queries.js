@@ -21,7 +21,16 @@ async function checkUsername(username) {
 }
 
 
+async function activate(id) {
+    try {
+        await pool.query('UPDATE users SET membership = TRUE WHERE id = $1', [id])
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     register,
-    checkUsername
+    checkUsername,
+    activate
 }
