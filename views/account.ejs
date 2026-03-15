@@ -7,8 +7,8 @@
 </head>
 <body>
     <h1>Account</h1>
-    <% if(isAdmin) { %>
-        <h2>Admin Prievleges Granted</h2>
+    <% if(user.admin) { %>
+        <h2>Admin Privileges Granted</h2>
     <% } %>
     
     <div>
@@ -32,6 +32,12 @@
         <% if(!user.membership) { %>
             <a href="/activate-membership">Activate Membership</a>
         <% } %>
+
+        <% if(!user.admin) { %>
+            <a href="/admin">Activate Admin Privileges</a>
+        <% } %>
+
+
 
         <a href="/home">Go back home</a>
     </div>
