@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 const { body, validationResult, matchedData } = require('express-validator')
 
 
-const validate = [
+const validateRegister = [
     body('f_name').trim()
         .notEmpty().withMessage('Please enter your first name'),
     body('l_name').trim()
@@ -26,8 +26,15 @@ const validate = [
     }))
 ]
 
+const validateLogin = [
+    body('username').trim()
+        .notEmpty().withMessage('Please enter your username.'),
+    body('password').trim()
+        .notEmpty().withMessage('Please enter your password.')
+]
+
 exports.register = [
-    validate,
+    validateRegister,
     async (req, res) => {
         const errors = validationResult(req)
 
