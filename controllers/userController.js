@@ -24,19 +24,17 @@ function account(req, res) {
 }
 
 function activateView(req, res) {
-    res.render('membership', {
-        id: req.session.passport.user
-    })
+    res.render('membership')
 }
 
 async function activate(req, res) {
-    const { code, id } = req.body
+    const { code } = req.body
 
     if(code !== process.env.MEMBERSHIP_CODE) {
         return res.redirect('/activate-membership')
     }
 
-    await db.activate(id)
+    await db.activate(req.session.passport.user)
 
     res.redirect('/account')
 }
