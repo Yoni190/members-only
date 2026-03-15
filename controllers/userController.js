@@ -1,5 +1,12 @@
 const db = require('../db/queries')
 require('dotenv').config()
+const { body, validationResult, matchedData } = require('express-validator')
+
+
+const validateCode = [
+    body('code').trim()
+        .notEmpty().withMessage('Please enter the membership code.')
+]
 
 function registerView(req, res) {
     res.render('sign-up')
