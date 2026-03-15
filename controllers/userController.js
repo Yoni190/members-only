@@ -25,7 +25,8 @@ exports.home = [
 
         res.render('home', {
             posts,
-            isMember: req.user.membership
+            isMember: req.user.membership,
+            isAdmin: req.user.admin
         })
     }
 ]
