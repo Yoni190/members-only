@@ -1,6 +1,7 @@
 const db = require('../db/queries')
 const bcrypt = require('bcrypt')
 const { body, validationResult, matchedData } = require('express-validator')
+const passport = require('passport')
 
 
 const validateRegister = [
@@ -53,6 +54,13 @@ exports.register = [
 
         return res.redirect('/login')
     }
+]
+
+exports.login = [
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    })
 ]
 
 exports.logout = [
