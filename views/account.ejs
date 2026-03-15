@@ -1,35 +1,54 @@
-<h1>Account</h1>
-<% if(user.admin) { %>
-    <h2>Admin Privileges Granted</h2>
-<% } %>
+<div class="d-flex flex-column align-items-center w-100">
+    <h1>Account</h1>
+    
+    <div class="card shadow-sm w-50 border-0 mt-5">
+        <div class="card-body p-4">
+            <h4 class="mb-4 fw-semibold">Account Overview</h4>
 
-<div>
-    <label for="f_name">First Name</label>
-    <p><%= user.f_name %></p>
-</div>
+            <div class="mb-3">
+                <small class="text-muted">First Name</small>
+                <p class="fs-5 mb-0"><%= user.f_name %></p>
+            </div>
+            
+            <div class="mb-3">
+                <small class="text-muted">Last Name</small>
+                <p class="fs-5 mb-0"><%= user.l_name %></p>
+            </div>
+            
+            <div class="mb-4">
+                <small class="text-muted">Membership Status</small>
+                <% if(user.membership) { %>
+                    <div class="mt-1">
+                        <span class="badge text-bg-success px-3 py-2">Active</span>
+                    </div>
+                <% } else {%>
+                    <div class="mt-1">
+                        <span class="badge text-bg-secondary px-3 py-2">Not Active</span>
+                    </div>
+                <% } %>
 
-<div>
-    <label for="l_name">Last Name</label>
-    <p><%= user.l_name %></p>
-</div>
-
-<div>
-    <label for="memebership">Membership Status</label>
-    <% if(user.membership) { %>
-        <p>Active</p>
-    <% } else {%>
-        <p>Not Active</p>
-    <% } %>
-
-    <% if(!user.membership) { %>
-        <a href="/activate-membership">Activate Membership</a>
-    <% } %>
-
-    <% if(!user.admin) { %>
-        <a href="/admin">Activate Admin Privileges</a>
-    <% } %>
-
-
-
-    <a href="/">Go back home</a>
+                <div class="mb-4">
+                    <small class="text-muted">Admin Status</small>
+                    <% if(user.admin) { %>
+                        <div class="mt-1">
+                            <span class="badge text-bg-success px-3 py-2">Active</span>
+                        </div>
+                    <% } else {%>
+                        <div class="mt-1">
+                            <span class="badge text-bg-secondary px-3 py-2">Not Active</span>
+                        </div>
+                    <% } %>
+                </div>
+            
+                <div class="d-flex gap-2 flex-wrap">
+                    <% if(!user.membership) { %>
+                        <a href="/activate-membership" class="btn btn-dark btn-sm">Activate Membership</a>
+                    <% } %>
+                    <% if(!user.admin) { %>
+                        <a href="/admin" class="btn btn-outline-dark btn-sm">Activate Admin Privileges</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
