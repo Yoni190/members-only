@@ -8,5 +8,12 @@
 <body>
     <h1>Home</h1>
     <a href="/account">Account</a>
+    <% posts.forEach((post) => { %>
+        <div>
+            <h2><%= post.title %></h2>
+            <p><%= post.message %></p>
+            <p><%= post.timestamp %></p>
+        </div>
+    <% }) %>
 </body>
 </html>
