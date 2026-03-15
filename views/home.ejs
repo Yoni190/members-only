@@ -13,11 +13,11 @@
         <div>
             <h2><%= post.title %></h2>
             <p><%= post.message %></p>
-            <p><%= post.timestamp %></p>
             <% if(isMember) { %>
+                <p><%= post.timestamp %></p>
                 <p><%= post.f_name %> <%= post.l_name %></p>
             <% } else { %>
-                <p>Only members can view the authors</p>
+                <p>Only members can view the authors and the creation date</p>
             <% } %>
             
         </div>
