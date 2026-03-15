@@ -1,24 +1,28 @@
-<form action="/register" method="POST">
-    <label for="f_name">First Name</label>
-    <input type="text" name="f_name" id="f_name" required>
+<div class="w-100 d-flex justify-content-center align-items-center">
+    <form action="/register" method="POST" class="d-flex flex-column p-5 gap-3 border border-black rounded shadow w-25">
+        <h2 class="text-center">Sign Up</h2>
+
+        <label for="f_name">First Name <p class="text-danger d-inline">*</p></label>
+        <input type="text" name="f_name" id="f_name" required>
     
-    <label for="l_name">Last Name</label>
-    <input type="text" name="l_name" id="l_name" required>
+        <label for="l_name">Last Name <p class="text-danger d-inline">*</p></label>
+        <input type="text" name="l_name" id="l_name" required>
     
-    <label for="username">Username</label>
-    <input type="text" name="username" id="username" required>
+        <label for="username">Username <p class="text-danger d-inline">*</p></label>
+        <input type="text" name="username" id="username" required>
+    
+        <label for="password">Password <p class="text-danger d-inline">*</p></label>
+        <input type="password" name="password" id="password" required>
+    
+        <label for="confirm_password">Confirm Password <p class="text-danger d-inline">*</p></label>
+        <input type="password" name="confirm_password" id="confirm_password" required>
+    
+    
+    
+        <button type="submit" class="border border-black rounded bg-primary text-white p-2">Sign Up</button>
 
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-
-    <label for="confirm_password">Confirm Password</label>
-    <input type="password" name="confirm_password" id="confirm_password" required>
-
-
-
-    <button type="submit">Sign Up</button>
-</form>
-
-<p>Already have an account? <a href="/login">Login Here</a></p>
-
-<%- include('partials/errors.ejs') %>
+        <p>Already have an account? <a href="/login" class="text-decoration-none">Login Here</a></p>
+            
+        <%- include('partials/errors.ejs') %>
+    </form>
+</div>
