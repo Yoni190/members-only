@@ -1,4 +1,5 @@
 const express = require('express')
+const expressLayout = require('express-ejs-layouts')
 const authRoute = require('./routes/authRoute')
 const userRoute = require('./routes/userRoute')
 const postRoute = require('./routes/postRoute')
@@ -36,6 +37,7 @@ app.use(passport.session())
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+app.use(expressLayout)
 
 app.use(authRoute)
 app.use(userRoute)
