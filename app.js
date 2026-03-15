@@ -1,6 +1,8 @@
 const express = require('express')
 const authRoute = require('./routes/authRoute')
 const userRoute = require('./routes/userRoute')
+const postRoute = require('./routes/postRoute')
+
 const path = require('node:path')
 const session = require('express-session')
 const passport = require('passport')
@@ -36,6 +38,7 @@ app.set('view engine', 'ejs')
 
 app.use(authRoute)
 app.use(userRoute)
+app.use(postRoute)
 
 const PORT = process.env.PORT || 3000
 
