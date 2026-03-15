@@ -8,50 +8,61 @@ const validateCode = [
         .notEmpty().withMessage('Please enter the membership code.')
 ]
 
-function registerView(req, res) {
-    res.render('sign-up')
-}
-
-function loginView(req, res) {
-    res.render('login')
-}
-
-async function home(req, res) {
-    const posts = await db.getPosts()
-
-    res.render('home', {
-        posts,
-        isMember: req.user.membership
-    })
-}
-
-function account(req, res) {
-    res.render('account', {
-        user: req.user
-    })
-}
-
-function activateView(req, res) {
-    res.render('membership')
-}
-
-async function activate(req, res) {
-    const { code } = req.body
-
-    if(code !== process.env.MEMBERSHIP_CODE) {
-        return res.redirect('/activate-membership')
+exports.registerView = [
+    (req, res) => {
+        res.render('sign-up')
     }
+]
+exports.loginView = [
+    (req, res) => {
+        res.render('login')
+    }
+]
 
-    await db.activate(req.session.passport.user)
+exports.home = [
+    async (req, res) => {
+        const posts = await db.getPosts()
 
-    res.redirect('/account')
-}
+        res.render('home', {
+            posts,
+            isMember: req.user.membership
+        })
+    }
+]
 
-module.exports = {
-    registerView,
-    loginView,
-    home,
-    account,
-    activateView,
-    activate
-}
+exports.account = [
+    (req, res) => {
+        res.render('account', {
+            user: req.user
+        })
+    }
+]
+
+exports.activateView = [
+    (req, res) => {
+        res.render('membership')
+    }
+]
+
+exports.activate = [
+    validateCode,
+    async (req, res) => {
+        const errors = validationResult(req)
+
+        if(!errors.isEmpty()) {
+            return res.status(400).render('membership' ,{
+                errors: errors.array()
+            })
+        }
+
+        const { code } = matchedData(req)
+
+        if(code !== process.env.MEMBERSHIP_CODE) {
+            return res.redirect('/activate-membership')
+        }
+
+        await db.activate(req.session.passport.user)
+
+        res.redirect('/account')
+    }
+]
