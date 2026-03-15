@@ -43,6 +43,6 @@ exports.deletePost = [
         
         await db.deletePost(post_id)
 
-        res.redirect('/home')
+        res.redirect('/')
     }
 ]
