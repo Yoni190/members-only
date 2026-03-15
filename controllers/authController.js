@@ -51,6 +51,6 @@ exports.register = [
 
         await db.register(f_name, l_name, username, hashedPassword)
 
-        res.status(200).json({ message: 'User registered successfully.' })
+        return res.redirect('/login')
     }
 ]
