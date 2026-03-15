@@ -16,9 +16,16 @@ function account(req, res) {
     })
 }
 
+function activate(req, res) {
+    res.render('membership', {
+        id: req.session.passport.user
+    })
+}
+
 module.exports = {
     registerView,
     loginView,
     home,
-    account
+    account,
+    activate
 }
