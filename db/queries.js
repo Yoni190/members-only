@@ -46,10 +46,19 @@ async function createPost(title, message, user_id) {
     }
 }
 
+async function setAdminStatus(id) {
+    try {
+        await pool.query('UPDATE users SET admin = TRUE WHERE id = $1', [id])
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     register,
     checkUsername,
     activate,
     getPosts,
-    createPost
+    createPost,
+    setAdminStatus
 }
