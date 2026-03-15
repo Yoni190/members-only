@@ -23,10 +23,13 @@ exports.home = [
     async (req, res) => {
         const posts = await db.getPosts()
 
+        const isMember = req.user?.membership || false
+        const isAdmin = req.user?.admin || false
+
         res.render('home', {
             posts,
-            isMember: req.user.membership,
-            isAdmin: req.user.admin
+            isMember,
+            isAdmin
         })
     }
 ]
