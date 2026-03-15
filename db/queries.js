@@ -38,9 +38,18 @@ async function getPosts() {
     }
 }
 
+async function createPost(title, message, user_id) {
+    try {
+        await pool.query('INSERT INTO posts (title, message, timestamp, user_id) VALUES ($1, $2, $3, $4)', [title, message, 'NOW()', user_id])
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     register,
     checkUsername,
     activate,
-    getPosts
+    getPosts,
+    createPost
 }
