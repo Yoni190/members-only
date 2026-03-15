@@ -54,11 +54,20 @@ async function setAdminStatus(id) {
     }
 }
 
+async function deletePost(post_id) {
+    try {
+        await pool.query('DELETE FROM posts WHERE id = $1', [post_id])
+    } catch (error) {
+        console.error(error)
+    }
+}
+
 module.exports = {
     register,
     checkUsername,
     activate,
     getPosts,
     createPost,
-    setAdminStatus
+    setAdminStatus,
+    deletePost
 }

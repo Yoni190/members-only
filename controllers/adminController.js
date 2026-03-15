@@ -36,3 +36,13 @@ exports.setAdmin = [
         res.redirect('/account')
     }
 ]
+
+exports.deletePost = [
+    async (req, res) => {
+        const post_id = req.params.id
+        
+        await db.deletePost(post_id)
+
+        res.redirect('/home')
+    }
+]
