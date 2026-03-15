@@ -25,11 +25,15 @@ exports.home = [
 
         const isMember = req.user?.membership || false
         const isAdmin = req.user?.admin || false
+        const isAuth = req.isAuthenticated()
+
+        console.log(isAuth)
 
         res.render('home', {
             posts,
             isMember,
-            isAdmin
+            isAdmin,
+            isAuth
         })
     }
 ]
