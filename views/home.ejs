@@ -1,7 +1,10 @@
 <div class="d-flex flex-column">
     <div class="d-flex gap-3 p-5">
+        <% if(posts.length === 0) { %>
+            <p>There are no posts. Be the first to post!</p>
+        <% } %>
         <% posts.forEach((post) => { %>
-            <div class="card p-3 border-black shadow ">
+            <div class="card p-3 border-black shadow">
                 <h2><%= post.title %></h2>
                 <p><%= post.message %></p>
                 <% if(isMember) { %>
