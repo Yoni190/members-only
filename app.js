@@ -4,6 +4,9 @@ const userRoute = require('./routes/userRoute')
 const path = require('node:path')
 const session = require('express-session')
 const passport = require('passport')
+const pool = require('./db/pool')
+
+const pgStore = require('connect-pg-simple')(session)
 
 const passportConfig = require('./config/passport')
 
@@ -14,14 +17,16 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-app.use(authRoute)
-app.use(userRoute)
-
+const sessionStore = new pgStore({ pool, tableName: 'sessions', createTableIfMissing: true })
 app.use(
     session({
         secret: process.env.SECRET,
         resave: false,
-        saveUninitialized: false
+        saveUninitialized: false,
+        store: sessionStore,
+        cookie: {
+            maxAge: 1000 * 60 * 60 * 24
+        }
     })
 )
 app.use(passport.session())
@@ -29,13 +34,8 @@ app.use(passport.session())
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-
-app.post('/login', 
-    passport.authenticate('local', {
-        successRedirect: '/home',
-        failureRedirect: '/login'
-    })
-)
+app.use(authRoute)
+app.use(userRoute)
 
 const PORT = process.env.PORT || 3000
 
