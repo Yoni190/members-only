@@ -4,7 +4,9 @@ const userRoute = require('./routes/userRoute')
 const path = require('node:path')
 const session = require('express-session')
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy
+
+const passportConfig = require('./config/passport')
+
 
 require('dotenv').config()
 
@@ -26,6 +28,14 @@ app.use(passport.session())
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
+
+
+app.post('/login', 
+    passport.authenticate('local', {
+        successRedirect: '/register',
+        failureRedirect: '/login'
+    })
+)
 
 const PORT = process.env.PORT || 3000
 
