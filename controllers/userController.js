@@ -10,12 +10,16 @@ const validateCode = [
 
 exports.registerView = [
     (req, res) => {
-        res.render('sign-up')
+        res.render('sign-up', {
+            title: 'Sign Up'
+        })
     }
 ]
 exports.loginView = [
     (req, res) => {
-        res.render('login')
+        res.render('login', {
+            title: 'Login'
+        })
     }
 ]
 
@@ -32,7 +36,8 @@ exports.home = [
             posts,
             isMember,
             isAdmin,
-            isAuth
+            isAuth,
+            title: 'Home'
         })
     }
 ]
@@ -40,14 +45,17 @@ exports.home = [
 exports.account = [
     (req, res) => {
         res.render('account', {
-            user: req.user
+            user: req.user,
+            title: 'Account'
         })
     }
 ]
 
 exports.activateView = [
     (req, res) => {
-        res.render('membership')
+        res.render('membership', {
+            title: 'Membership'
+        })
     }
 ]
 

@@ -11,7 +11,9 @@ const validatePost = [
 
 exports.createView = [
     (req, res) => {
-        res.render('create-post')
+        res.render('create-post', {
+            title: 'Create Post'
+        })
     }
 ]
 

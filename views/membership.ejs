@@ -1,18 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activate Membership</title>
-</head>
-<body>
-    <h1>Activate Membership</h1>
+<h1>Activate Membership</h1>
 
-    <form action="/activate-membership" method="POST">
-        <input type="text" name="code" id="code" placeholder="Membership Code" required>
-        <button type="submit">Activate</button>
-    </form>
+<form action="/activate-membership" method="POST">
+    <input type="text" name="code" id="code" placeholder="Membership Code" required>
+    <button type="submit">Activate</button>
+</form>
 
-    <%- include('partials/errors.ejs') %>
-</body>
-</html>
+<%- include('partials/errors.ejs') %>
